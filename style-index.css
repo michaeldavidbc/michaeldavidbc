@@ -1,0 +1,240 @@
+/* Variables de color estilo GitHub Dark */
+:root {
+    --bg-color: #0d1117;
+    --card-bg: #161b22;
+    --text-color: #f0f6fc;
+    --accent-color: #ff0000;
+    --border-color: #30363d;
+    --success-color: #238636;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+}
+
+.container {
+    width: 90%;
+    max-width: 1000px;
+}
+
+header {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    column-gap: 20px;
+    margin-bottom: 50px;
+}
+
+/* Estilo para la foto de perfil*/
+.fotoperfil {
+    width: 200px;
+    height: 300px;
+    border-radius: 10%;
+    margin-top: 20px;
+    border: 1px solid var(--text-color);
+    transition: transform 0.3s ease;
+    
+}
+
+.fotoperfil:hover {
+   transform: translateY(-8px);
+    border-color: var(--accent-color);
+    box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+}
+
+/* Estilo para el encabezado */
+
+h1 {
+    font-size: 3rem;
+    text-align: left;
+    color: #E6EDF3;
+    margin: 0;
+    font-weight: 800
+}
+
+/* Estilo para el subtítulo, Stage Mangaer */
+.subtitle {
+    color: #ffffff;
+    font-size: 1.2rem;
+    margin-top: 5px;
+}
+
+.descripcion-header {
+    margin-top: 20px;
+}
+
+.descripcion-header h2 {
+    font-size: 1.5rem;
+    color: var(--text-color);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.descripcion-texto {
+    color: #8b949e;
+    line-height: 1.6;
+}
+
+/* --- BENTO GRID CORE --- */
+
+.grid-container {
+    display: grid;
+    /* 3 columnas de base */
+    grid-template-columns: repeat(3, 1fr);
+    /* Altura base de las filas */
+    grid-auto-rows: 220px;
+    gap: 20px;
+}
+
+/* Modificadores de tamaño para el Bento */
+.card.wide { grid-column: span 2; } /* Ocupa 2 columnas */
+.card.large { grid-row: span 2; }  /* Ocupa 2 filas */
+
+/* Estilo de Tarjeta */
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Contenido al final */
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    border-color: var(--accent-color);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+}
+
+.card-content {
+    padding: 25px;
+}
+
+.card h2 {
+    margin: 0;
+    font-size: 1.6rem;
+}
+
+.card p {
+    color: #8b949e;
+    margin: 8px 0 15px 0;
+    font-size: 0.95rem;
+}
+
+.btn {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: var(--success-color);
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+footer {
+    text-align: center;
+    margin: 60px 0;
+    color: #5d6771;
+}
+
+/* Ajuste Mobile */
+@media (max-width: 768px) {
+    .grid-container {
+        grid-template-columns: 1fr;
+        grid-auto-rows: auto;
+    }
+    .card.wide, .card.large {
+        grid-column: span 1;
+        grid-row: span 1;
+    }
+}
+
+/* Animación de carga de banner inicial*/
+/* Pantalla de inicio que cubre todo */
+#pantalla-inicio {
+    position: fixed;
+    text-align: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 12, 16, 0.95); /* Negro profundo semi-transparente */
+    backdrop-filter: blur(10px); /* Efecto de desenfoque al fondo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000; /* Asegura que esté por encima de todo */
+    transition: all 0.8s ease;
+}
+
+.tarjeta-presentacion {
+    background: #161b22;
+    padding: 50px;
+    border-radius: 24px;
+    border: 1px solid #30363d;
+    max-width: 600px;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+}
+
+.foto-inicio {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 3px solid #3fb950; /* El verde de tu botón */
+    margin-bottom: 20px;
+    object-fit: cover;
+}
+
+.tarjeta-presentacion h1 {
+    color: #f0f6fc;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    line-height: 1.3;
+    text-align: center;
+}
+
+.tarjeta-presentacion p {
+    color: #8b949e;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.tarjeta-presentacion strong {
+    color: #3fb950; /* Resalta tu frase clave en verde */
+}
+
+.boton-entrar {
+    background: #3fb950;
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.boton-entrar:hover {
+    transform: scale(1.05);
+    background: #2ea043;
+}
+
+/* Clase para ocultar el banner con suavidad */
+.oculto {
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(1.1); /* Efecto de zoom al salir */
+}

@@ -3,14 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Michael David | Portfolio</title>
-    <link rel="stylesheet" href="style-home.css">
+    <title>Michael David BC| Portfolio</title>
+    <link rel="stylesheet" href="style-index.css">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>🚀 Michael David</h1>
-            <p class="subtitle">Stage Manager | Data Analyst | AI Creator</p>
+            <img class="fotoperfil" src="imagenesprincipal/fotodeperfil.png" alt="Foto de Perfil" >
+            <div class="header-content">
+                <h1> Michael David BC</h1>
+                <p class="subtitle">Stage Manager | Data Analyst | AI Creator</p>
+                <div class="descripcion-header">
+                    <h2>Trayectoria & Enfoque</h2>
+                    <p class="descripcion-texto">
+                        Mi base y mayor fortaleza es el <strong>audio profesional</strong>. He construido mi carrera en este terreno, liderando el flujo de señales tecnicas, mezcla de sonido y la logística crítica de <strong>conciertos y giras internacionales</strong>.
+                    </p>
+                    <p class="descripcion-texto">
+                        Esa trayectoria me ha convertido en un <strong>perfil multidisciplinario</strong>. Hoy, unifico mi dominio del audio y el mundo audiovisual con la que <strong>aplicando la lógica de la programación, el rigor del análisis de datos y el potencial de la IA para resolver problemas complejos y elevar la calidad de cada proyecto</strong> y nuevos retos que me proponga.
+                    </p>
+                    <p class="descripcion-texto">
+                        Todo lo que hago es impulsado por el <strong>motor de la curiosidad de aprender y avanzar</strong>. Soy un estudioso de lo que me proponga, capaz de dominar la tecnología necesaria para que el proyecto sea un éxito.
+                    </p>
+                    <p class="descripcion-texto">
+                        Si hoy no lo sé, <strong>tenlo por seguro que mañana Sí</strong>. 
+                </div>
+            </div>
         </header>
         
         <main class="grid-container">
@@ -61,5 +78,32 @@
             <p>2026 | Michael David - Portafolio Profesional</p>
         </footer>
     </div>
+    <!-- Script para manejar la pantalla de inicio que sale al usuario primero -->
+    <script>
+function entrar() {
+    const banner = document.getElementById('pantalla-inicio');
+    banner.classList.add('oculto');
+    
+    // Opcional: Eliminar el elemento del código después de la animación
+    setTimeout(() => {
+        banner.style.display = 'none';
+    }, 800);
+}
+</script>
 </body>
+
+<div id="pantalla-inicio">
+    <div class="tarjeta-presentacion">
+        <img src="imagenesprincipal/fotobannerprincipal.png" alt="Michael David" class="foto-inicio">
+        <h1>"Este portafolio es mi propia Prueba de Concepto"</h1>
+        <p>
+            Lo que vas a ver es ejecución pura: código, diseño e historial profesional. 
+            He integrado la Inteligencia Artificial como un multiplicador, pero no te confundas: 
+            el valor no está en que la herramienta lo haga todo, sino en 
+            <strong>conocer la herramienta, saberla usar y entender la lógica</strong> 
+            detrás de cada resultado.
+        </p>
+        <button onclick="entrar()" class="boton-entrar">Muéstrame</button>
+    </div>
+</div>
 </html>
