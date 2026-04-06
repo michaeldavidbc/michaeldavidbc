@@ -3,10 +3,14 @@
     --bg-color: #0d1117;
     --card-bg: #161b22;
     --text-color: #f0f6fc;
-    --accent-color: #ff0000;
+    --accent-color: #00d9ff;
     --border-color: #30363d;
     --success-color: #238636;
+    --fondo-oscuro: #0d1117;
+    --verde-subtitulos: #00ff22;
+
 }
+
 
 body {
     background-color: var(--bg-color);
@@ -21,7 +25,14 @@ body {
 .container {
     width: 90%;
     max-width: 1000px;
+    background-color: rgba(13, 17, 23, 0.85); 
+    border-radius: 12px;
+    padding: 30px;
+    position: relative;
+    z-index: 10;
+    background-color: rgba(13, 17, 23, 0.85); 
 }
+
 
 header {
     display: grid;
@@ -71,14 +82,14 @@ h1 {
 
 .descripcion-header h2 {
     font-size: 1.5rem;
-    color: var(--text-color);
+    color: var(--verde-subtitulos);
     border-bottom: 1px solid var(--border-color);
     padding-bottom: 10px;
     margin-bottom: 15px;
 }
 
 .descripcion-texto {
-    color: #8b949e;
+    color: #fbfbfc;
     line-height: 1.6;
 }
 
@@ -91,6 +102,7 @@ h1 {
     /* Altura base de las filas */
     grid-auto-rows: 220px;
     gap: 20px;
+    
 }
 
 /* Modificadores de tamaño para el Bento */
