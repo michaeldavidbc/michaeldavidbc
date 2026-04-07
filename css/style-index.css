@@ -96,6 +96,7 @@ h1 {
     /* Contenedor para el carrusel posicionado absolutamente */
     position: relative;
     min-height: 300px; /* Espacio para que el carrusel se muestre */
+    overflow: hidden; /* Evita el desbordamiento horizontal causado por el carrusel */
 }
 
 .proyectos h2 {
