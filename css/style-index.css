@@ -196,10 +196,10 @@ h1 {
 
 /* --- Proyectos / Enlaces --- */
 .proyectos {
-    margin-top: 40px; /* Espacio reducido */
+    margin-top: 5px; /* Espacio reducido */
     /* Contenedor para el carrusel posicionado absolutamente */
     position: relative;
-    min-height: 300px; /* Espacio para que el carrusel se muestre */
+    min-height: 550px; /* Aumentado para dar más espacio inferior al carrusel */
     overflow: hidden; /* Evita el desbordamiento horizontal causado por el carrusel */
 }
 
@@ -208,7 +208,7 @@ h1 {
     color: var(--verde-subtitulos);
     border-bottom: 1px solid var(--border-color);
     padding-bottom: 10px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 footer {
@@ -333,9 +333,9 @@ footer {
 .lista-proyectos {
   height: 200px;
   position: absolute;
-  top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translateX(-50%); /* Mantenemos solo el centrado horizontal */
+  top: 80px; /* Distancia fija desde arriba, eliminando el centrado vertical */
   /* Importante: el UL no necesita padding o bullets aquí */
   padding: 0;
   list-style: none;
@@ -343,12 +343,12 @@ footer {
 
 .lista-proyectos li {
   list-style-type: none;
-  width: 200px;
-  height: 200px;
+  width: 400px;
+  height: 400px;
   opacity: .25;
   position: absolute;
   left: 50%;
-  margin-left: -100px;
+  margin-left: -200px; /* Corregido: La mitad del nuevo ancho (400px) */
   border-radius: 8px; /* Un poco más de borde */
   background: var(--card-bg); /* Usando tus variables de color */
   border: 1px solid var(--border-color);
@@ -360,6 +360,14 @@ footer {
   align-items: center;
   padding: 15px;
   text-align: center;
+}
+
+.lista-proyectos li .imagen-audio {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 15px;
 }
 
 .lista-proyectos li h3 {
@@ -391,19 +399,19 @@ footer {
 }
 
 .lista-proyectos .prev {
-  transform: translateX(-220px) scale(.85);
+  transform: translateX(-320px) scale(.85); /* Proporción ajustada */
 }
 
 .lista-proyectos .next {
-  transform: translateX(220px) scale(.85);
+  transform: translateX(320px) scale(.85); /* Proporción ajustada */
 }
 
 .lista-proyectos .hide {
-  transform: translateX(-420px) scale(.85);
+  transform: translateX(-640px) scale(.85); /* Proporción ajustada */
 }
 
 .lista-proyectos .new-next {
-  transform: translateX(420px) scale(.85);
+  transform: translateX(640px) scale(.85); /* Proporción ajustada */
 }
 
 .lista-proyectos .hide,
