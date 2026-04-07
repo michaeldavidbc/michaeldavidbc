@@ -6,9 +6,7 @@
     --accent-color: #00d9ff;
     --border-color: #30363d;
     --success-color: #238636;
-    --fondo-oscuro: #0d1117;
     --verde-subtitulos: #00ff22;
-
 }
 
 
@@ -25,12 +23,11 @@ body {
 .container {
     width: 90%;
     max-width: 1000px;
-    background-color: rgba(13, 17, 23, 0.85); 
     border-radius: 12px;
     padding: 30px;
     position: relative;
     z-index: 10;
-    background-color: rgba(13, 17, 23, 0.85); 
+    background-color: rgba(13, 17, 23, 0.85);
 }
 
 
@@ -64,14 +61,14 @@ header {
 h1 {
     font-size: 3rem;
     text-align: left;
-    color: #E6EDF3;
+    color: var(--text-color);
     margin: 0;
-    font-weight: 800
+    font-weight: 800;
 }
 
 /* Estilo para el subtítulo, Stage Mangaer */
 .subtitle {
-    color: #ffffff;
+    color: var(--text-color);
     font-size: 1.2rem;
     margin-top: 5px;
 }
@@ -89,68 +86,61 @@ h1 {
 }
 
 .descripcion-texto {
-    color: #fbfbfc;
+    color: var(--text-color);
     line-height: 1.6;
 }
 
-/* --- BENTO GRID CORE --- */
-
-.grid-container {
-    display: grid;
-    /* 3 columnas de base */
-    grid-template-columns: repeat(3, 1fr);
-    /* Altura base de las filas */
-    grid-auto-rows: 220px;
-    gap: 20px;
-    
+/* --- Contacto --- */
+.contacto {
+    margin-bottom: 60px;
 }
 
-/* Modificadores de tamaño para el Bento */
-.card.wide { grid-column: span 2; } /* Ocupa 2 columnas */
-.card.large { grid-row: span 2; }  /* Ocupa 2 filas */
+.contacto h2 {
+    font-size: 1.5rem;
+    color: var(--verde-subtitulos);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+}
 
-/* Estilo de Tarjeta */
-.card {
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    text-decoration: none;
-    color: inherit;
-    transition: all 0.3s ease;
-    overflow: hidden;
+.contacto-links {
     display: flex;
-    flex-direction: column;
-    justify-content: flex-end; /* Contenido al final */
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
 }
 
-.card:hover {
-    transform: translateY(-8px);
+.contacto-link {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    padding: 12px 25px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.contacto-link:hover {
+    transform: translateY(-3px);
     border-color: var(--accent-color);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    color: var(--accent-color);
 }
 
-.card-content {
-    padding: 25px;
+/* --- Proyectos / Enlaces --- */
+.proyectos {
+    margin-top: 60px;
+    /* Contenedor para el carrusel posicionado absolutamente */
+    position: relative;
+    min-height: 300px; /* Espacio para que el carrusel se muestre */
 }
 
-.card h2 {
-    margin: 0;
-    font-size: 1.6rem;
-}
-
-.card p {
-    color: #8b949e;
-    margin: 8px 0 15px 0;
-    font-size: 0.95rem;
-}
-
-.btn {
-    display: inline-block;
-    padding: 8px 16px;
-    background-color: var(--success-color);
-    border-radius: 6px;
-    font-weight: bold;
-    font-size: 0.9rem;
+.proyectos h2 {
+    font-size: 1.5rem;
+    color: var(--verde-subtitulos);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+    margin-bottom: 30px;
 }
 
 footer {
@@ -161,14 +151,6 @@ footer {
 
 /* Ajuste Mobile */
 @media (max-width: 768px) {
-    .grid-container {
-        grid-template-columns: 1fr;
-        grid-auto-rows: auto;
-    }
-    .card.wide, .card.large {
-        grid-column: span 1;
-        grid-row: span 1;
-    }
 /* Ajuste para celulares/tables */
     header {
         grid-template-columns: 1fr; 
@@ -184,6 +166,19 @@ footer {
     .descripcion-header {
         
         text-align: left;
+    }
+
+    h1 {
+        text-align: center; /* Asegura que el H1 principal se centre en móvil */
+    }
+
+    .tarjeta-presentacion {
+        width: 90%; /* Hace la tarjeta de bienvenida más flexible */
+        padding: 40px 20px;
+    }
+
+    .tarjeta-presentacion h1 {
+        font-size: 1.5rem; /* Reduce el tamaño del texto para móviles */
     }
 }
 /* Animación de carga de banner inicial*/
@@ -264,4 +259,99 @@ footer {
     opacity: 0;
     visibility: hidden;
     transform: scale(1.1); /* Efecto de zoom al salir */
+}
+
+/*Carrusel de proyectos*/
+.lista-proyectos {
+  height: 200px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  /* Importante: el UL no necesita padding o bullets aquí */
+  padding: 0;
+  list-style: none;
+}
+
+.lista-proyectos li {
+  list-style-type: none;
+  width: 200px;
+  height: 200px;
+  opacity: .25;
+  position: absolute;
+  left: 50%;
+  margin-left: -100px;
+  border-radius: 8px; /* Un poco más de borde */
+  background: var(--card-bg); /* Usando tus variables de color */
+  border: 1px solid var(--border-color);
+  transition: transform 1s, opacity 1s;
+  /* Añadido para centrar el contenido de los items */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  text-align: center;
+}
+
+.lista-proyectos li h3 {
+    margin: 0 0 15px 0;
+    font-size: 1.1rem;
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+.lista-proyectos li a.proyecto-enlace {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.2s ease;
+}
+
+.lista-proyectos li a.proyecto-enlace:hover {
+    color: white;
+}
+
+.lista-proyectos .act {
+  opacity: 1;
+  z-index: 11; /* Para que esté por encima de la capa de swipe y sea clickeable */
+}
+
+.lista-proyectos .prev,
+.lista-proyectos .next {
+  cursor: pointer;
+}
+
+.lista-proyectos .prev {
+  transform: translateX(-220px) scale(.85);
+}
+
+.lista-proyectos .next {
+  transform: translateX(220px) scale(.85);
+}
+
+.lista-proyectos .hide {
+  transform: translateX(-420px) scale(.85);
+}
+
+.lista-proyectos .new-next {
+  transform: translateX(420px) scale(.85);
+}
+
+.lista-proyectos .hide,
+.lista-proyectos .new-next {
+  opacity: 0;
+  transition: opacity .5s, transform .5s;
+}
+
+.swipe {
+  width: 270px;
+  height: 200px;
+  position: absolute;
+  border-radius: 2px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  opacity: 0;
+  z-index: 10; /* Asegura que esté sobre los items para capturar el swipe */
 }

@@ -29,3 +29,109 @@ VANTA.NET({
   maxDistance: 25.00,
   spacing: 16.00
 });
+
+// Carrusel de proyectos
+
+// Función utilitaria para seleccionar elementos
+const $ = selector => document.querySelector(selector);
+
+// Referencia a tu contenedor HTML exacto
+const slider = $(".lista-proyectos");
+
+// Función principal que asigna los estados (clases) según la posición
+function actualizarClases() {
+  const items = document.querySelectorAll(".lista-proyectos li");
+  
+  // Limpiar las clases de estado anteriores
+  items.forEach(item => {
+    item.classList.remove("hide", "prev", "act", "next", "new-next");
+  });
+  
+  // Asignar el nuevo estado según el orden actual en el DOM
+  if(items[0]) items[0].classList.add("hide");
+  if(items[1]) items[1].classList.add("prev");
+  if(items[2]) items[2].classList.add("act");
+  if(items[3]) items[3].classList.add("next");
+  if(items[4]) items[4].classList.add("new-next");
+}
+
+function next() {
+  // Tomamos el primer elemento y lo movemos al final de la fila
+  const primerElemento = slider.firstElementChild;
+  slider.appendChild(primerElemento);
+  actualizarClases();
+}
+
+function prev() {
+  // Tomamos el último elemento y lo movemos al principio de la fila
+  const ultimoElemento = slider.lastElementChild;
+  slider.insertBefore(ultimoElemento, slider.firstElementChild);
+  actualizarClases();
+}
+  
+// --- Lógica de Interacción ---
+
+// Variable para controlar la frecuencia de los eventos (throttling)
+let isThrottled = false;
+const throttleDelay = 500; // ms
+
+// --- Lógica de Autoplay ---
+let autoplayInterval = null;
+const autoplayDelay = 5000; // 5 segundos
+
+function startAutoplay() {
+  // Limpiamos cualquier intervalo anterior para evitar duplicados
+  clearInterval(autoplayInterval);
+  autoplayInterval = setInterval(next, autoplayDelay);
+}
+
+function stopAutoplay() {
+  clearInterval(autoplayInterval);
+}
+
+// Escuchar HOVER en el carrusel para moverlo sin hacer clic y pausar autoplay
+slider.onmouseover = event => {
+  stopAutoplay(); // Pausamos el autoplay al entrar con el mouse
+  // Si estamos en un período de "enfriamiento", no hacer nada para evitar movimientos erráticos
+  if (isThrottled) return;
+  const hoveredItem = event.target.closest('li');
+  let actionTaken = false;
+  
+  if (hoveredItem) {
+    if (hoveredItem.classList.contains('next')) {
+      next();
+      actionTaken = true;
+    } else if (hoveredItem.classList.contains('prev')) {
+      prev();
+      actionTaken = true;
+    }
+  }
+
+  // Si se ejecutó una acción, activamos el "enfriamiento"
+  if (actionTaken) {
+    isThrottled = true;
+    setTimeout(() => { isThrottled = false; }, throttleDelay);
+  }
+};
+
+// Reanudamos el autoplay cuando el mouse sale del área del carrusel
+slider.onmouseleave = () => {
+  startAutoplay();
+};
+
+// Inicializar el carrusel asignando las clases por primera vez al cargar
+actualizarClases();
+startAutoplay(); // Iniciar el autoplay al cargar la página
+
+// --- Lógica para pantallas táctiles (Requiere Hammer.js en tu HTML) ---
+if (typeof Hammer !== 'undefined') {
+  const swipe = new Hammer($(".swipe"));
+  swipe.on("swipeleft", () => {
+    next();
+    startAutoplay(); // Reinicia el temporizador después de un swipe
+  });
+  swipe.on("swiperight", () => {
+    prev();
+    startAutoplay(); // Reinicia el temporizador después de un swipe
+  });
+}
