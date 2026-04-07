@@ -91,17 +91,19 @@ function stopAutoplay() {
 
 // Escuchar HOVER en el carrusel para moverlo sin hacer clic y pausar autoplay
 slider.onmouseover = event => {
-  stopAutoplay(); // Pausamos el autoplay al entrar con el mouse
   // Si estamos en un período de "enfriamiento", no hacer nada para evitar movimientos erráticos
   if (isThrottled) return;
   const hoveredItem = event.target.closest('li');
   let actionTaken = false;
   
   if (hoveredItem) {
+    // Solo detenemos el autoplay y actuamos si se hace hover en las tarjetas de navegación
     if (hoveredItem.classList.contains('next')) {
+      stopAutoplay();
       next();
       actionTaken = true;
     } else if (hoveredItem.classList.contains('prev')) {
+      stopAutoplay();
       prev();
       actionTaken = true;
     }
