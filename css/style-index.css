@@ -36,7 +36,7 @@ header {
     grid-template-columns: auto 1fr;
     align-items: center;
     column-gap: 20px;
-    margin-bottom: 50px;
+    margin-bottom: 20px; /* Espacio reducido */
 }
 
 /* Estilo para la foto de perfil*/
@@ -90,9 +90,113 @@ h1 {
     line-height: 1.6;
 }
 
+/* --- Contacto --- */
+/* --- ESTILOS DE LA SECCIÓN CONTACTO --- */
+
+/* Estilo para los títulos de sección */
+.titulo-seccion {
+  font-size: 1.5rem;
+  color: var(--verde-subtitulos);
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+
+/* Contenedor principal: separa la info a la izquierda y redes a la derecha */
+.contacto-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; /* Alinea los items al inicio para que los títulos coincidan */
+  flex-wrap: wrap; /* Permite que colapse ordenadamente en celulares */
+  gap: 20px;
+  padding: 20px 0;
+}
+
+.columna-redes {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* Alinea el contenido de esta columna a la derecha */
+}
+
+/* Estilos de los textos de contacto */
+.contacto-info {
+  display: flex;
+  flex-direction: column; /* Apila los elementos verticalmente */
+  gap: 15px; /* Espacio entre los elementos */
+}
+
+.contacto-info p, 
+.contacto-info .email-link {
+  color: var(--text-color);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Separación entre el icono y el texto */
+  font-size: 0.95rem;
+  margin: 0; /* Limpia márgenes por defecto */
+  transition: color 0.3s ease;
+}
+
+/* Pinta los iconos de contacto del verde de tu marca */
+.contacto-info i {
+  color: #00ff88; 
+}
+
+/* Efecto hover solo para el correo */
+.contacto-info .email-link:hover {
+  color: #00ff88;
+}
+
+/* --- ESTILOS DE LOS BOTONES DE REDES SOCIALES --- */
+.redes-sociales {
+  display: flex;
+  gap: 15px;
+}
+
+.social-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 45px;
+  height: 45px;
+  background: rgba(255, 255, 255, 0.05); /* Fondo oscuro semitransparente */
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Borde sutil */
+  border-radius: 8px; /* Bordes redondeados */
+  color: rgb(77, 255, 0);
+  font-size: 1.2rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+/* Efecto al pasar el mouse por las redes sociales */
+.social-btn:hover {
+  background: #00ff88; /* Fondo verde */
+  color: #0a0a0a; /* Icono oscuro para dar contraste */
+  transform: translateY(-4px); /* El botón "salta" un poco hacia arriba */
+  border-color: #00ff88;
+  box-shadow: 0 5px 15px rgba(0, 255, 136, 0.2); /* Resplandor suave */
+}
+
+/* --- RESPONSIVE MOBILE --- */
+@media (max-width: 768px) {
+  .contacto-wrapper {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .contacto-info {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .columna-redes {
+    align-items: flex-start; /* En móvil, alinea todo a la izquierda */
+  }
+}
+
 /* --- Proyectos / Enlaces --- */
 .proyectos {
-    margin-top: 60px;
+    margin-top: 40px; /* Espacio reducido */
     /* Contenedor para el carrusel posicionado absolutamente */
     position: relative;
     min-height: 300px; /* Espacio para que el carrusel se muestre */
