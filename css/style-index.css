@@ -288,6 +288,18 @@ footer {
     color: #3fb950; /* Resalta tu frase clave en verde */
 }
 
+.accordion-body p strong {
+    color: var(--verde-subtitulos); /* Por defecto, todas las negritas son verdes */
+}
+
+/* Estilo específico para "+11 Años De Experiencia" */
+.accordion-body > p:nth-of-type(2) > strong:first-child {
+    background-color: #facc15; /* Fondo amarillo */
+    color: #000000; /* Texto negro */
+    padding: 0 0.25rem; /* Espaciado */
+    border-radius: 0.25rem; /* Bordes redondeados */
+}
+
 .boton-entrar {
     background: #3fb950;
     color: white;
