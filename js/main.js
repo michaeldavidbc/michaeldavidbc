@@ -30,110 +30,74 @@ VANTA.NET({
   spacing: 16.00
 });
 
-// Carrusel de proyectos
-
-// Función utilitaria para seleccionar elementos
-const $ = selector => document.querySelector(selector);
-
-// Referencia a tu contenedor HTML exacto
-const slider = $(".lista-proyectos");
-
-// Función principal que asigna los estados (clases) según la posición
-function actualizarClases() {
-  const items = document.querySelectorAll(".lista-proyectos li");
-  
-  // Limpiar las clases de estado anteriores
-  items.forEach(item => {
-    item.classList.remove("hide", "prev", "act", "next", "new-next");
+// --- Lógica para el Ecosistema Técnico (Pestañas) ---
+function switchTab(event, tabId) {
+  // Oculta todo el contenido de las pestañas
+  const tabContents = document.querySelectorAll('.tab-content');
+  tabContents.forEach(content => {
+    content.classList.remove('active');
   });
-  
-  // Asignar el nuevo estado según el orden actual en el DOM
-  if(items[0]) items[0].classList.add("hide");
-  if(items[1]) items[1].classList.add("prev");
-  if(items[2]) items[2].classList.add("act");
-  if(items[3]) items[3].classList.add("next");
-  if(items[4]) items[4].classList.add("new-next");
+
+  // Quita la clase 'active' de todos los botones de pestañas
+  const tabButtons = document.querySelectorAll('.tab-btn');
+  tabButtons.forEach(button => {
+    button.classList.remove('active');
+  });
+
+  // Muestra el contenido de la pestaña seleccionada
+  const selectedTab = document.getElementById(tabId);
+  if (selectedTab) {
+    selectedTab.classList.add('active');
+  }
+
+  // Añade la clase 'active' al botón que fue clickeado
+  event.currentTarget.classList.add('active');
 }
 
-function next() {
-  // Tomamos el primer elemento y lo movemos al final de la fila
-  const primerElemento = slider.firstElementChild;
-  slider.appendChild(primerElemento);
-  actualizarClases();
-}
+// --- Lógica para el Modal de Certificados ---
 
-function prev() {
-  // Tomamos el último elemento y lo movemos al principio de la fila
-  const ultimoElemento = slider.lastElementChild;
-  slider.insertBefore(ultimoElemento, slider.firstElementChild);
-  actualizarClases();
-}
-  
-// --- Lógica de Interacción ---
+function initializeCertificateModal() {
+  const certificateLinks = document.querySelectorAll('.ver-certificado');
+  const modalOverlay = document.getElementById('certificate-modal');
+  const modalImage = document.getElementById('certificate-image');
+  const modalClose = document.querySelector('.modal-close');
 
-// Variable para controlar la frecuencia de los eventos (throttling)
-let isThrottled = false;
-const throttleDelay = 500; // ms
+  if (!modalOverlay || !modalImage || !modalClose) {
+    return; // Si no existen los elementos del modal, no hacemos nada.
+  }
 
-// --- Lógica de Autoplay ---
-let autoplayInterval = null;
-const autoplayDelay = 5000; // 5 segundos
+  // Función para abrir el modal
+  function openModal(imageSrc) {
+    modalImage.src = imageSrc;
+    modalOverlay.classList.add('visible');
+  }
 
-function startAutoplay() {
-  // Limpiamos cualquier intervalo anterior para evitar duplicados
-  clearInterval(autoplayInterval);
-  autoplayInterval = setInterval(next, autoplayDelay);
-}
+  // Función para cerrar el modal
+  function closeModal() {
+    modalOverlay.classList.remove('visible');
+  }
 
-function stopAutoplay() {
-  clearInterval(autoplayInterval);
-}
+  // Añadimos un event listener a cada enlace
+  certificateLinks.forEach(link => {
+    link.addEventListener('click', function (event) {
+      event.preventDefault(); // Evitamos que el enlace navegue
+      const imageSrc = this.getAttribute('data-img');
+      if (imageSrc) {
+        openModal(imageSrc);
+      }
+    });
+  });
 
-// Escuchar HOVER en el carrusel para moverlo sin hacer clic y pausar autoplay
-slider.onmouseover = event => {
-  // Si estamos en un período de "enfriamiento", no hacer nada para evitar movimientos erráticos
-  if (isThrottled) return;
-  const hoveredItem = event.target.closest('li');
-  let actionTaken = false;
-  
-  if (hoveredItem) {
-    // Solo detenemos el autoplay y actuamos si se hace hover en las tarjetas de navegación
-    if (hoveredItem.classList.contains('next')) {
-      stopAutoplay();
-      next();
-      actionTaken = true;
-    } else if (hoveredItem.classList.contains('prev')) {
-      stopAutoplay();
-      prev();
-      actionTaken = true;
+  // Añadimos event listener para cerrar el modal
+  modalClose.addEventListener('click', closeModal);
+
+  // También cerramos el modal si se hace clic fuera de la imagen (en el overlay)
+  modalOverlay.addEventListener('click', function (event) {
+    if (event.target === modalOverlay) {
+      closeModal();
     }
-  }
-
-  // Si se ejecutó una acción, activamos el "enfriamiento"
-  if (actionTaken) {
-    isThrottled = true;
-    setTimeout(() => { isThrottled = false; }, throttleDelay);
-  }
-};
-
-// Reanudamos el autoplay cuando el mouse sale del área del carrusel
-slider.onmouseleave = () => {
-  startAutoplay();
-};
-
-// Inicializar el carrusel asignando las clases por primera vez al cargar
-actualizarClases();
-startAutoplay(); // Iniciar el autoplay al cargar la página
-
-// --- Lógica para pantallas táctiles (Requiere Hammer.js en tu HTML) ---
-if (typeof Hammer !== 'undefined') {
-  const swipe = new Hammer($(".swipe"));
-  swipe.on("swipeleft", () => {
-    next();
-    startAutoplay(); // Reinicia el temporizador después de un swipe
-  });
-  swipe.on("swiperight", () => {
-    prev();
-    startAutoplay(); // Reinicia el temporizador después de un swipe
   });
 }
+
+// Llamamos a la función para que se ejecute al cargar el script
+initializeCertificateModal();
