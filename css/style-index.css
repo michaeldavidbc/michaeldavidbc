@@ -102,7 +102,7 @@ h1 {
   margin-bottom: 15px;
 }
 
-/* Contenedor principal: separa la info a la izquierda y redes a la derecha */
+/* Contenedor principal: separa la info a la izquierda, el CV centrado y redes a la derecha */
 .contacto-wrapper {
   display: flex;
   justify-content: space-between;
@@ -110,6 +110,20 @@ h1 {
   flex-wrap: wrap; /* Permite que colapse ordenadamente en celulares */
   gap: 20px;
   padding: 20px 0;
+}
+
+.columna-contacto,
+.columna-cv,
+.columna-redes {
+  flex: 1 1 180px;
+}
+
+.columna-cv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
 }
 
 .columna-redes {
@@ -177,11 +191,43 @@ h1 {
   box-shadow: 0 5px 15px rgba(0, 255, 136, 0.2); /* Resplandor suave */
 }
 
+/* --- BOTÓN CV PDF --- */
+.cv-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 20px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: var(--bg-color);
+  background: linear-gradient(135deg, #00ff88, #00d9ff);
+  font-weight: 700;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 8px 20px rgba(0, 255, 136, 0.2);
+}
+
+.cv-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px rgba(0, 255, 136, 0.3);
+}
+
+.cv-btn-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 /* --- RESPONSIVE MOBILE --- */
 @media (max-width: 768px) {
   .contacto-wrapper {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .columna-cv {
+    align-items: flex-start;
+    text-align: left;
   }
 
   .contacto-info {
