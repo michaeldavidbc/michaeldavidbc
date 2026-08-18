@@ -82,7 +82,9 @@ function initializeCertificateModal() {
     link.addEventListener('click', function (event) {
       event.preventDefault(); // Evitamos que el enlace navegue
       const imageSrc = this.getAttribute('data-img');
-      if (imageSrc) {
+      if (imageSrc === 'diploma-perdido') {
+        alert('¡Diploma en misión de búsqueda! 🕵️‍♂️\n\nEste es el título que con más orgullo debería mostrar, pero parece que se tomó unas vacaciones no autorizadas en alguna mudanza. Estoy tramitando la copia oficial. ¡Prometo que apenas la tenga, ocupará su merecido lugar aquí!');
+      } else if (imageSrc) {
         openModal(imageSrc);
       }
     });
